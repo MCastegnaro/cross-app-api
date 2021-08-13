@@ -7,11 +7,18 @@ const categoriesRoutes = Router();
 const categoriesRepository = new CategoriesRepository();
 
 categoriesRoutes.post("/", (request, response) => {
-  const { name, description, isTeam } = request.body;
+  const { name, description, isTeam, numberOfParticipants, numberOfEntries } =
+    request.body;
 
   const createCategoryService = new CreateCategoryService(categoriesRepository);
 
-  createCategoryService.execute({ name, description, isTeam });
+  createCategoryService.execute({
+    name,
+    description,
+    isTeam,
+    numberOfParticipants,
+    numberOfEntries,
+  });
 
   return response.status(201).send();
 });

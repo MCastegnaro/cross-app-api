@@ -5,6 +5,9 @@ class Category {
   name: string;
   description: string;
   isTeam: boolean;
+  numberOfParticipants: number;
+  numberOfEntries: number;
+
   created_at: Date;
 
   constructor() {

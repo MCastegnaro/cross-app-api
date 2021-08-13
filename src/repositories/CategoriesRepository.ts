@@ -11,13 +11,22 @@ class CategoriesRepository implements ICategoriesRepository {
     this.categories = [];
   }
 
-  create({ name, description, isTeam }: ICreateCategoryDTO): void {
+  create({
+    name,
+    description,
+    isTeam,
+    numberOfParticipants,
+    numberOfEntries,
+  }: ICreateCategoryDTO): void {
     const category = new Category();
 
     Object.assign(category, {
       name,
       description,
       isTeam,
+      numberOfEntries,
+      numberOfParticipants,
+
       created_at: new Date(),
     });
 
