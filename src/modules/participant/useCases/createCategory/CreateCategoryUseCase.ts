@@ -1,4 +1,4 @@
-import { ICategoriesRepository } from "../repositories/ICategoriesRepository";
+import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 
 interface IRequest {
   name: string;
@@ -8,7 +8,7 @@ interface IRequest {
   numberOfEntries: number;
 }
 
-class CreateCategoryService {
+class CreateCategoryUseCase {
   // eslint-disable-next-line prettier/prettier
   constructor(private categoriesRepository: ICategoriesRepository) {}
 
@@ -23,6 +23,12 @@ class CreateCategoryService {
 
     if (categoryAlreadyExists) {
       throw new Error(`Category ${name} already exists`);
+    }
+
+    if (!isTeam && numberOfParticipants > 1) {
+      throw new Error(
+        `Categories of individuals must contain just one participant`
+      );
     }
 
     if (isTeam && numberOfParticipants === 1) {
@@ -41,4 +47,4 @@ class CreateCategoryService {
   }
 }
 
-export { CreateCategoryService };
+export { CreateCategoryUseCase };
