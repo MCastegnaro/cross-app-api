@@ -1,4 +1,4 @@
-import { ICategoriesRepository } from "../../repositories/implementations/ICategoriesRepository";
+import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 
 interface IRequest {
   name: string;
@@ -12,14 +12,16 @@ class CreateCategoryUseCase {
   // eslint-disable-next-line prettier/prettier
   constructor(private categoriesRepository: ICategoriesRepository) {}
 
-  execute({
+  async execute({
     name,
     description,
     isTeam,
     numberOfEntries,
     numberOfParticipants = 1,
-  }: IRequest): void {
-    const categoryAlreadyExists = this.categoriesRepository.findByName(name);
+  }: IRequest): Promise<void> {
+    const categoryAlreadyExists = await this.categoriesRepository.findByName(
+      name
+    );
 
     if (categoryAlreadyExists) {
       throw new Error(`Category ${name} already exists`);
@@ -37,7 +39,7 @@ class CreateCategoryUseCase {
       );
     }
 
-    this.categoriesRepository.create({
+    await this.categoriesRepository.create({
       name,
       description,
       isTeam,
