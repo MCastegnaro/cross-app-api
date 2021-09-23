@@ -6,7 +6,8 @@
   "password": "crossapp",
   "database": "crossapp_db",
   "entities": [
-    "./src/modules/participant/entities/*.ts"
+    "./src/modules/participant/entities/*.ts",
+    "./src/modules/account/entities/*.ts"
   ],
   "migrations": [
     "./src/database/migrations/*.ts"
@@ -14,7 +15,8 @@
   "cli": {
     "migrationsDir": "./src/database/migrations",
     "entitiesDir": [
-      "./src/modules/participant/entities/*.ts"
+      "./src/modules/participant/entities/*.ts",
+      "./src/modules/account/entities/*.ts"
     ]
   }
 }
