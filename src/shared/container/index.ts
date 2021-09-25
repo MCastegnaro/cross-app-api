@@ -1,7 +1,7 @@
 import { container } from "tsyringe";
 
-import { UsersRepository } from "../../modules/accounts/repositories/implementations/UsersRepository";
-import { IUsersRepository } from "../../modules/accounts/repositories/IUsersRepository";
+import { UsersRepository } from "../../modules/account/repositories/implementations/UsersRepository";
+import { IUsersRepository } from "../../modules/account/repositories/IUsersRepository";
 import { ICategoriesRepository } from "../../modules/participant/repositories/ICategoriesRepository";
 import { CategoriesRepository } from "../../modules/participant/repositories/implementations/CategoriesRepository";
 

@@ -3,11 +3,14 @@ import "express-async-errors";
 import swaggerUi from "swagger-ui-express";
 
 import "./database";
+
+import "./shared/container";
 import { AppError } from "./errors/AppError";
 import { router } from "./routes";
 import swaggerFile from "./swagger.json";
 
 const app = express();
+const port = 3000;
 
 app.use(express.json());
 
@@ -30,4 +33,4 @@ app.use(
   }
 );
 
-app.listen(3000, () => console.log("[CROSS APP API] listening on 3000!"));
+app.listen(port, () => console.log(`[CROSS APP API] listening on ${port}!`));

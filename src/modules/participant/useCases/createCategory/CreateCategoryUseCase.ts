@@ -1,3 +1,6 @@
+import { inject, injectable } from "tsyringe";
+
+import { AppError } from "../../../../errors/AppError";
 import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 
 interface IRequest {
@@ -8,9 +11,12 @@ interface IRequest {
   numberOfEntries: number;
 }
 
+@injectable()
 class CreateCategoryUseCase {
-  // eslint-disable-next-line prettier/prettier
-  constructor(private categoriesRepository: ICategoriesRepository) {}
+  constructor(
+    @inject("CategoriesRepository")
+    private categoriesRepository: ICategoriesRepository
+  ) {}
 
   async execute({
     name,
@@ -24,17 +30,17 @@ class CreateCategoryUseCase {
     );
 
     if (categoryAlreadyExists) {
-      throw new Error(`Category ${name} already exists`);
+      throw new AppError(`Category ${name} already exists`);
     }
 
     if (!isTeam && numberOfParticipants > 1) {
-      throw new Error(
+      throw new AppError(
         `Categories of individuals must contain just one participant`
       );
     }
 
     if (isTeam && numberOfParticipants === 1) {
-      throw new Error(
+      throw new AppError(
         `Categories of teams must contain more than one participant`
       );
     }
