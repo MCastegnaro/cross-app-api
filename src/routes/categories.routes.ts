@@ -1,18 +1,16 @@
 import { Router } from "express";
 
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
-import createCategoryController from "../modules/participant/useCases/createCategory";
-import { listCategoriesController } from "../modules/participant/useCases/listCategories";
+import { CreateCategoryController } from "../modules/participant/useCases/createCategory/CreateCategoryController";
+import { ListCategoriesController } from "../modules/participant/useCases/listCategories/ListCategoriesController";
 
 const categoriesRoutes = Router();
 
-categoriesRoutes.use(ensureAuthenticated);
-categoriesRoutes.post("/", (request, response) => {
-  return createCategoryController().handle(request, response);
-});
+const createCategoryController = new CreateCategoryController();
+const listCategoriesController = new ListCategoriesController();
 
-categoriesRoutes.get("/", (request, response) => {
-  return listCategoriesController.handle(request, response);
-});
+categoriesRoutes.use(ensureAuthenticated);
+categoriesRoutes.post("/", createCategoryController.handle);
+categoriesRoutes.get("/", listCategoriesController.handle);
 
 export { categoriesRoutes };
