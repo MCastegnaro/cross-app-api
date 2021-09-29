@@ -19,7 +19,7 @@ services:
     container_name: crossapp_api
     restart: always
     ports: 
-      - 3000:3000
+      - 3333:3333
     volumes:
       - .:/usr/app
       - /usr/app/node_modules
