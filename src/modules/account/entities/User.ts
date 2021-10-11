@@ -22,6 +22,12 @@ class User {
   email: string;
 
   @Column()
+  avatar: string;
+
+  @Column()
+  firstAccess: boolean;
+
+  @Column()
   isAdmin: boolean;
 
   @CreateDateColumn()
